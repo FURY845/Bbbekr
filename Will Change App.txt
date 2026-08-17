@@ -1,0 +1,156 @@
+You are modifying my existing application. Implement ALL of the following changes carefully without breaking any existing functionality. Before finishing, verify every requirement below has actually been implemented and tested.
+1. App Lock & Fingerprint
+I enabled fingerprint authentication, and fingerprint authentication itself works correctly.
+However, after enabling fingerprint, the app is also asking for a PIN/password that I never created.
+Fix this completely: if the user enables fingerprint authentication without setting a separate password/PIN, the app must NOT require an unknown/default PIN.
+Add a clear Settings section called "App Lock".
+Add an option named "Disable Lock".
+The user must be able to choose the authentication method clearly.
+If a password/PIN is configured, it must be the actual password/PIN previously created by the user. Never generate or assume a hidden/default password.
+The app must authenticate before displaying any protected application data. Currently, the app briefly displays its data and then locks. This is a security/privacy issue. Fix the startup flow so protected data is never rendered before authentication succeeds.
+When the user disables the lock, require proper authentication/confirmation before disabling it.
+2. Improve Settings Organization
+Redesign and organize the Settings screen into clear sections. For example:
+Data Management
+Transfer encrypted data
+Import/export encrypted data
+Backup/restore if already supported
+App Lock
+Enable/disable fingerprint
+Password/PIN management
+Disable Lock
+Invoice Settings
+Invoice customization and related options
+Data Cleanup
+Selective deletion options
+Other existing settings should also be grouped logically instead of being displayed as an unorganized list.
+Keep the UI clean, modern, fast, and easy to understand.
+3. Performance
+Make the application extremely fast and responsive.
+Eliminate unnecessary lag and UI freezes.
+Optimize database queries and data loading.
+Avoid loading unnecessary data into memory.
+Use efficient caching where appropriate.
+Perform heavy operations asynchronously/background where appropriate.
+Avoid unnecessary recompositions/re-renders if the project uses a reactive UI framework.
+The application should remain smooth even on low-end Android devices.
+Do NOT sacrifice data integrity or security for performance.
+4. Currency / Number Formatting
+There is still an incorrect .00 decimal display.
+For example:
+Current: 500.00ج
+Required: 500ج
+Also:
+Current product quantity may appear as 1.00
+Required: 1
+Apply this intelligently throughout the application wherever the value is a whole number.
+Examples:
+500.00ج → 500ج
+1.00 → 1
+25.00 → 25
+If a value genuinely contains a fractional amount, preserve the necessary decimal digits instead of blindly removing decimals.
+5. Individual Customer Account / Transaction History
+The current individual customer account movement/history system is excellent.
+Do NOT redesign or change its existing functionality.
+Only make these specific modifications:
+Time format
+Change transaction timestamps from 12-hour format to 24-hour format.
+Example:
+2:00 PM → 14:00
+8:30 PM → 20:30
+Use the actual transaction time and display it consistently in 24-hour format.
+Returns
+When a return is recorded, the history currently displays something like:
+Returned oil quantity (1.00)
+Change it to:
+Returned oil quantity (1)
+Do not change the rest of the customer-account/history behavior.
+6. Invoice Search by Date
+Add a search/filter feature for invoices based on date.
+The user should be able to:
+Select a specific date.
+Search invoices by date.
+View invoices belonging to a selected date.
+Keep the existing invoice functionality intact.
+If the application already has date filtering/search functionality, improve it rather than creating duplicate functionality.
+7. Permanent Local Data Storage
+All important application data must remain permanently stored on the phone unless the user explicitly chooses to delete it.
+This includes:
+All invoices
+All sales
+All customer transactions
+All customer accounts
+All inventory-related records
+All transaction history
+Any other important business data currently stored by the application
+Do NOT automatically delete old records.
+Make sure the database/storage architecture persists data across:
+App restarts
+Closing the app
+Device restarts
+Normal application updates
+Do not use temporary/in-memory storage for important business records.
+8. Selective Data Cleanup
+Add a dedicated Settings section named:
+"Data Cleanup"
+The user must be able to choose exactly what to delete instead of having only one "delete everything" option.
+For example, provide options such as:
+Delete invoices for the last month
+Delete invoices for the last 2 months
+Delete invoices for the last 3 months
+Delete invoices for the last 4 months
+Delete invoices for the last 5 months
+Delete invoices for the last 6 months
+Delete older data/custom date range if appropriate
+Delete specific categories of data
+Delete all data, only if such an option already makes sense for the application
+The cleanup system must be selective and must clearly tell the user what will be deleted before deletion.
+9. Mandatory Confirmation Before Data Deletion
+NEVER delete important data immediately after the user taps a deletion option.
+Before any destructive operation, require confirmation.
+The confirmation must require either:
+Fingerprint authentication, OR
+The application's configured password/PIN
+Use the authentication method actually configured by the user.
+If fingerprint is enabled and available, use fingerprint authentication.
+If a password/PIN is configured, allow password/PIN authentication.
+If neither authentication method is configured, do not silently invent one.
+The deletion must only happen after successful authentication and explicit confirmation.
+10. Vault / Expense Button
+In the Vault section, the button/text for "Record Expenses" is currently not visually clear.
+Improve the button so that:
+The text "Record Expenses" is clearly readable.
+The button has sufficient contrast.
+The label is not hidden, clipped, or visually confusing.
+Maintain the application's existing design language.
+11. Critical Data-Safety Requirements
+Do not break or remove any existing working functionality.
+Before modifying database/storage logic:
+Inspect the existing data model.
+Preserve existing stored data.
+Preserve backward compatibility with existing records.
+Use safe database migrations if the schema needs to change.
+Do not reset or wipe the database during an update.
+Do not replace working customer-account functionality unnecessarily.
+12. Final Verification
+After implementing the changes, test every requirement individually.
+Verify at minimum:
+Fingerprint lock works.
+No unknown/default PIN is requested.
+App data is NOT displayed before authentication.
+"Disable Lock" works correctly.
+Settings are properly organized.
+App startup and navigation are fast.
+Whole-number amounts display without .00.
+Customer account history remains unchanged except for the requested time/quantity formatting.
+Time displays in 24-hour format.
+Returns display quantities such as (1), not (1.00).
+Invoice search by date works.
+All important data persists permanently.
+Data Cleanup provides selective deletion.
+Deletion always requires authentication and confirmation.
+"Record Expenses" is clearly visible in the Vault.
+Existing functionality continues to work.
+No crashes, data loss, broken navigation, or regressions are introduced.
+Important: Do not simply describe how these changes could be implemented. Actually modify the existing project/source code and implement all requested changes. Inspect the existing architecture first and integrate the changes properly with the current codebase.
+At the end, provide a concise summary of exactly what was changed and confirm that every requirement above was implemented.
