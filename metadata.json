@@ -1,0 +1,7 @@
+{
+  "name": "مدير حسابات مخزن الأمانة",
+  "description": "نظام إدارة مخازن وحسابات وفواتير مخزن الأمانة مع جرد المخزون، سجل ديون العملاء، وحسابات الخزنة وفواتير QR الشاملة.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
